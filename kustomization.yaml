@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - https://storage.googleapis.com/tekton-releases/operator/latest/release.yaml
   - https://raw.githubusercontent.com/tektoncd/operator/main/config/crs/kubernetes/config/all/operator_v1alpha1_config_cr.yaml
+  - https://github.com/pivotal/kpack/releases/download/v0.10.1/release-0.10.1.yaml
 
