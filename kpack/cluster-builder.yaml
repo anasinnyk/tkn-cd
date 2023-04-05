@@ -3,7 +3,7 @@ kind: ClusterBuilder
 metadata:
   name: all-builders
 spec:
-  tag: buildingbuilder/cluster-builder
+  tag: ghcr.io/anasinnyk/buildpacks-builder
   stack:
     name: stack
     kind: ClusterStack

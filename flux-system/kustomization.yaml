@@ -3,3 +3,20 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+patches:
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1beta2
+      kind: Kustomization
+      name: flux-system
+      namespace: flux-system
+    patch: |-
+      - op: replace
+        path: /spec/prune
+        value: false
+      - op: add
+        path: /spec/decryption
+        value:
+          provider: sops
+          secretRef:
+            name: sops-gpg
