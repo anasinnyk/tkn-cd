@@ -1,0 +1,13 @@
+apiVersion: kpack.io/v1alpha2
+kind: ClusterStore
+metadata:
+  name: store
+spec:
+  serviceAccountRef:
+    name: kpack
+    namespace: kpack-builder
+  sources:
+  - image: gcr.io/paketo-buildpacks/php
+  - image: gcr.io/paketo-buildpacks/nodejs
+  - image: gcr.io/paketo-buildpacks/go
+  - image: docker.io/paketocommunity/rust
