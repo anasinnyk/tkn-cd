@@ -3,3 +3,5 @@ kind: ServiceAccount
 metadata:
   name: kpack
   namespace: kpack-builder
+secrets:
+  - name: ghcr
