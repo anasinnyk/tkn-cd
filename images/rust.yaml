@@ -1,0 +1,16 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: rust
+  namespace: kpack-builder
+spec:
+  tag: ghcr.io/anasinnyk/rust
+  builder:
+    kind: ClusterBuilder
+    name: all-builders
+  serviceAccountName: kpack
+  source:
+    git:
+      url: https://github.com/anasinnyk/php-go-node-rust-monorepo-example.git
+      revision: main
+    subPath: projects/rust
