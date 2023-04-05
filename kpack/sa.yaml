@@ -5,3 +5,5 @@ metadata:
   namespace: kpack-builder
 secrets:
   - name: ghcr
+imagePullSecrets:
+  - name: ghcr-docker

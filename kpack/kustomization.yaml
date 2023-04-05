@@ -7,3 +7,4 @@ resources:
   - cluster-stack.yaml
   - cluster-store.yaml
   - secret.yaml
+  - docker-secret.yaml

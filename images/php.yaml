@@ -14,3 +14,9 @@ spec:
       url: https://github.com/anasinnyk/php-go-node-rust-monorepo-example.git
       revision: main
     subPath: projects/php
+  build:
+    env:
+      - name: BP_PHP_WEB_DIR
+        value: public
+      - name: BP_PHP_SERVER
+        value: nginx
