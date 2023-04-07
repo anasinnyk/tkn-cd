@@ -18,9 +18,5 @@ spec:
     env:
       - name: BP_PHP_WEB_DIR
         value: public
-      - name: BP_PHP_SERVER
-        value: nginx
       - name: BP_DOTENV_SUFFIX
         value: production
-      - name: PORT
-        value: "8080"

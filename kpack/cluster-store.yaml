@@ -7,7 +7,7 @@ spec:
     name: kpack
     namespace: kpack-builder
   sources:
-    - image: ghcr.io/anasinnyk/dotenv-buildpack/anasinnyk_dotenv:0.0.9
+    - image: ghcr.io/anasinnyk/dotenv-buildpack/anasinnyk_dotenv:0.0.12
     - image: gcr.io/paketo-buildpacks/php
     - image: gcr.io/paketo-buildpacks/nodejs
     - image: gcr.io/paketo-buildpacks/go
