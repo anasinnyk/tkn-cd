@@ -15,12 +15,14 @@ spec:
     namespace: kpack-builder
   order:
   - group:
+    - id: paketo-community/rust
     - id: anasinnyk/dotenv
   - group:
-    - id: paketo-community/rust
-  - group:
     - id: paketo-buildpacks/nodejs
+    - id: anasinnyk/dotenv
   - group:
     - id: paketo-buildpacks/php
+    - id: anasinnyk/dotenv
   - group:
     - id: paketo-buildpacks/go
+    - id: anasinnyk/dotenv
