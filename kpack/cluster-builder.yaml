@@ -15,6 +15,8 @@ spec:
     namespace: kpack-builder
   order:
   - group:
+    - id: anasinnyk/dotenv
+  - group:
     - id: paketo-community/rust
   - group:
     - id: paketo-buildpacks/nodejs
