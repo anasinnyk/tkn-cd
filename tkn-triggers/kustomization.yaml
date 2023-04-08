@@ -5,3 +5,4 @@ resources:
   - event-listener.yaml
   - pr-binding.yaml
   - rbac.yaml
+  - secret.yaml
