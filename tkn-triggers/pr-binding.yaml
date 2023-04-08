@@ -9,3 +9,7 @@ spec:
       value: $(body.pull_request.head.sha)
     - name: gitrepositoryurl
       value: $(body.repository.clone_url)
+    - name: gitreponame
+      value: $(body.repository.name)
+    - name: gitrepoowner
+      value: $(body.repository.owner)

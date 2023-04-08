@@ -7,7 +7,28 @@ spec:
   params:
     - name: gitrevision
     - name: gitrepositoryurl
+    - name: gitreponame
+    - name: gitrepoowner
   resourcetemplates:
+    - apiVersion: kpack.io/v1alpha2
+      kind: Build
+      metadata:
+        generateName: php-$(tt.params.gitrevision)
+        namespace: kpack-builder
+      spec:
+        tags:
+          - ghcr.io/$(tt.params.gitrepoowner)/$(tt.params.gitreponame)/php:$(tt.params.gitrevision)
+        serviceAccountName: kpack
+        cache:
+          volume:
+          persistentVolumeClaimName: php-cache
+        builder:
+          image: ghcr.io/anasinnyk/buildpacks-builder:latest
+        source:
+          git:
+            url: $(tt.params.gitrepositoryurl)
+            revision: $(tt.params.gitrevision)
+          subPath: projects/php
     - apiVersion: tekton.dev/v1beta1
       kind: TaskRun
       metadata:
