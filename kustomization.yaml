@@ -6,3 +6,4 @@ resources:
   - https://github.com/pivotal/kpack/releases/download/v0.10.1/release-0.10.1.yaml
   - ./kpack/
   - ./images/
+  - ./tkn-triggers/

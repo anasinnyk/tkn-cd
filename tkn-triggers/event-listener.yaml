@@ -2,7 +2,7 @@ apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
   name: github-listener
-  namespace: kpac-builder
+  namespace: kpack-builder
 spec:
   triggers:
     - name: github-listener
@@ -26,3 +26,9 @@ spec:
         - ref: github-pr-binding
       template:
         ref: github-template
+  resources:
+    kubernetesResource:
+      spec:
+        template:
+          spec:
+            serviceAccountName: tekton-triggers
