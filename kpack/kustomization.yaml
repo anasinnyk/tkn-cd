@@ -8,3 +8,5 @@ resources:
   - cluster-store.yaml
   - secret.yaml
   - docker-secret.yaml
+  - role.yaml
+  - role-binding.yaml

@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: kpack-builder
+  name: access-to-kpack
+rules:
+- apiGroups: ["kpack.io"]
+  resources: ["*"]
+  verbs: ["*"]

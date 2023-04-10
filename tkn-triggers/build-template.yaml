@@ -36,6 +36,11 @@ spec:
                   cache:
                     volume:
                     persistentVolumeClaimName: php-cache
+                  env:
+                    - name: BP_PHP_WEB_DIR
+                      value: public
+                    - name: BP_DOTENV_SUFFIX
+                      value: production
                   builder:
                     image: ghcr.io/anasinnyk/buildpacks-builder:latest
                   source:
