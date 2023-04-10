@@ -6,3 +6,5 @@ resources:
   - pr-binding.yaml
   - rbac.yaml
   - secret.yaml
+  - https://api.hub.tekton.dev/v1/resource/tekton/task/kubernetes-actions/0.2/raw
+namespace: kpack-builder

@@ -8,24 +8,33 @@ spec:
     - name: github-listener
       interceptors:
         - ref:
-            name: "github"
+            name: github
           params:
-            - name: "secretRef"
+            - name: secretRef
               value:
                 secretName: github-secret
                 secretKey: secretToken
             - name: "eventTypes"
               value: ["pull_request"]
+            - name: "addChangedFiles"
+              value:
+                enabled: true
         - name: "only when PRs are opened"
           ref:
-            name: "cel"
+            name: cel
           params:
-            - name: "filter"
+            - name: filter
               value: "body.action in ['opened', 'synchronize', 'reopened']"
+        - name: "only when php project was changed"
+          ref:
+            name: cel
+          params:
+          - name: filter
+            value: extensions.changed_files.matches('projects/php/')
       bindings:
         - ref: github-pr-binding
       template:
-        ref: github-template
+        ref: github-php-template
   resources:
     kubernetesResource:
       spec:

@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
-  name: github-template
+  name: github-php-template
   namespace: kpack-builder
 spec:
   params:
@@ -10,33 +10,37 @@ spec:
     - name: gitreponame
     - name: gitrepoowner
   resourcetemplates:
-    - apiVersion: kpack.io/v1alpha2
-      kind: Build
-      metadata:
-        generateName: php-$(tt.params.gitrevision)
-        namespace: kpack-builder
-      spec:
-        tags:
-          - ghcr.io/$(tt.params.gitrepoowner)/$(tt.params.gitreponame)/php:$(tt.params.gitrevision)
-        serviceAccountName: kpack
-        cache:
-          volume:
-          persistentVolumeClaimName: php-cache
-        builder:
-          image: ghcr.io/anasinnyk/buildpacks-builder:latest
-        source:
-          git:
-            url: $(tt.params.gitrepositoryurl)
-            revision: $(tt.params.gitrevision)
-          subPath: projects/php
     - apiVersion: tekton.dev/v1beta1
       kind: TaskRun
       metadata:
-        generateName: github-run-
+        generateName: kubectl-run-
       spec:
-        taskSpec:
-          steps:
-            - image: ubuntu
-              script: |
-                #! /bin/bash
-                echo "Revision is : $(tt.params.gitrevision). RepoURL is $(tt.params.gitrepositoryurl)"
+        serviceAccountName: kpack
+        taskRef:
+          name: kubernetes-actions
+        params:
+          - name: image
+            value: bitnami/kubectl:latest
+          - name: script
+            value: |
+              kubectl create -f - <<EOF
+                apiVersion: kpack.io/v1alpha2
+                kind: Build
+                metadata:
+                  generateName: php-$(tt.params.gitrevision)-
+                  namespace: kpack-builder
+                spec:
+                  tags:
+                    - ghcr.io/$(tt.params.gitrepoowner)/$(tt.params.gitreponame)/php:$(tt.params.gitrevision)
+                  serviceAccountName: kpack
+                  cache:
+                    volume:
+                    persistentVolumeClaimName: php-cache
+                  builder:
+                    image: ghcr.io/anasinnyk/buildpacks-builder:latest
+                  source:
+                    git:
+                      url: $(tt.params.gitrepositoryurl)
+                      revision: $(tt.params.gitrevision)
+                    subPath: projects/php
+              EOF
